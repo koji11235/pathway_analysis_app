@@ -18,8 +18,6 @@ library(viridis)
 library(pathview)
 library(png)
 
-library(shinycssloaders)
-
 # barplot function  -----------------------------------
 barplot_plotly <- function(enrichment_result, showCategory, selected_rows){
   # create barplot object -----------------------------------------

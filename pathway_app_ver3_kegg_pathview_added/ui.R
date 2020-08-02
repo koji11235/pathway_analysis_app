@@ -51,7 +51,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "bar plot",
-              plotlyOutput("KEGG_barPlot") %>% withSpinner(type=7),
+            plotlyOutput("KEGG_barPlot"),
             sliderInput("KEGG_barPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -60,7 +60,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "dot plot",
-            plotlyOutput("KEGG_dotPlot") %>% withSpinner(type=7),
+            plotlyOutput("KEGG_dotPlot"),
             sliderInput("KEGG_dotPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -71,7 +71,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "emap plot",
-            plotlyOutput("KEGG_emapPlot") %>% withSpinner(type=7),
+            plotlyOutput("KEGG_emapPlot"),
             sliderInput("KEGG_emapPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -80,7 +80,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "cnet plot",
-            plotlyOutput("KEGG_cnetPlot") %>% withSpinner(type=7),
+            plotlyOutput("KEGG_cnetPlot"),
             sliderInput("KEGG_cnetPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -91,11 +91,11 @@ ui <- dashboardPage(
         fluidRow(
           tabPanel(
             "Table", 
-            DT::dataTableOutput("kegg_table") %>% withSpinner(type=7)
+            DT::dataTableOutput("kegg_table")
           )
         ),
         box(width = 8, height = 6,
-          imageOutput("KeggImage", width = "100%", height = "100%") %>% withSpinner(type=7),
+          imageOutput("KeggImage", width = "100%", height = "100%"),
           downloadButton('downloadKEGGImage', 'Download kegg pathway image')
         )
       ), # tabItem
@@ -107,7 +107,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "bar plot",
-            plotlyOutput("Reactome_barPlot") %>% withSpinner(type=7),
+            plotlyOutput("Reactome_barPlot"),
             sliderInput("Reactome_barPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -116,7 +116,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "dot plot",
-            plotlyOutput("Reactome_dotPlot") %>% withSpinner(type=7),
+            plotlyOutput("Reactome_dotPlot"),
             sliderInput("Reactome_dotPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -127,7 +127,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "emap plot",
-            plotlyOutput("Reactome_emapPlot") %>% withSpinner(type=7),
+            plotlyOutput("Reactome_emapPlot"),
             sliderInput("Reactome_emapPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -136,7 +136,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "cnet plot",
-            plotlyOutput("Reactome_cnetPlot") %>% withSpinner(type=7),
+            plotlyOutput("Reactome_cnetPlot"),
             sliderInput("Reactome_cnetPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -147,7 +147,7 @@ ui <- dashboardPage(
         fluidRow(
           tabPanel(
             "Table", 
-            DT::dataTableOutput("reactome_table") %>% withSpinner(type=7)
+            DT::dataTableOutput("reactome_table")
           )
         )
       ), # tabItem
@@ -158,7 +158,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "bar plot",
-            plotlyOutput("GO_BP_barPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_BP_barPlot"),
             sliderInput("GO_BP_barPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -167,7 +167,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "dot plot",
-            plotlyOutput("GO_BP_dotPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_BP_dotPlot"),
             sliderInput("GO_BP_dotPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -178,7 +178,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "emap plot",
-            plotlyOutput("GO_BP_emapPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_BP_emapPlot"),
             sliderInput("GO_BP_emapPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -187,7 +187,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "cnet plot",
-            plotlyOutput("GO_BP_cnetPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_BP_cnetPlot"),
             sliderInput("GO_BP_cnetPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -198,7 +198,7 @@ ui <- dashboardPage(
         fluidRow(
           tabPanel(
             "Table", 
-            DT::dataTableOutput("GO_BP_table") %>% withSpinner(type=7)
+            DT::dataTableOutput("GO_BP_table")
           )
         )
       ), # tabItem
@@ -209,7 +209,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "bar plot",
-            plotlyOutput("GO_MF_barPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_MF_barPlot"),
             sliderInput("GO_MF_barPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -218,7 +218,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "dot plot",
-            plotlyOutput("GO_MF_dotPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_MF_dotPlot"),
             sliderInput("GO_MF_dotPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -229,7 +229,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "emap plot",
-            plotlyOutput("GO_MF_emapPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_MF_emapPlot"),
             sliderInput("GO_MF_emapPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -238,7 +238,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "cnet plot",
-            plotlyOutput("GO_MF_cnetPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_MF_cnetPlot"),
             sliderInput("GO_MF_cnetPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -249,7 +249,7 @@ ui <- dashboardPage(
         fluidRow(
           tabPanel(
             "Table", 
-            DT::dataTableOutput("GO_MF_table") %>% withSpinner(type=7)
+            DT::dataTableOutput("GO_MF_table")
           )
         )
       ), # tabItem
@@ -260,7 +260,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "bar plot",
-            plotlyOutput("GO_CC_barPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_CC_barPlot"),
             sliderInput("GO_CC_barPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -269,7 +269,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "dot plot",
-            plotlyOutput("GO_CC_dotPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_CC_dotPlot"),
             sliderInput("GO_CC_dotPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -280,7 +280,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             title = "emap plot",
-            plotlyOutput("GO_CC_emapPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_CC_emapPlot"),
             sliderInput("GO_CC_emapPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -289,7 +289,7 @@ ui <- dashboardPage(
           ),
           box(
             title = "cnet plot",
-            plotlyOutput("GO_CC_cnetPlot") %>% withSpinner(type=7),
+            plotlyOutput("GO_CC_cnetPlot"),
             sliderInput("GO_CC_cnetPlot_showCategory", 
                         "Show Categories",
                         width = "50%",
@@ -300,7 +300,7 @@ ui <- dashboardPage(
         fluidRow(
           tabPanel(
             "Table", 
-            DT::dataTableOutput("GO_CC_table") %>% withSpinner(type=7)
+            DT::dataTableOutput("GO_CC_table")
           )
         )
       ) # tabItem
@@ -309,4 +309,39 @@ ui <- dashboardPage(
 ) # dashboardPage
   
   
- 
+  
+  
+  
+  # Define UI for application that draws a histogram
+  # shinyUI(fluidPage(
+  #   
+  #   # Application title
+#   titlePanel("Pathway App"),
+#   
+#   sidebarLayout(
+#     sidebarPanel(
+#       
+#       fileInput("file", "Upload CSV file",
+#                 accept = c(
+#                   "text/csv",
+#                   "text/comma-separated-values,text/plain",
+#                   ".csv")
+#       ),
+#       sliderInput("show_category",
+#                   "Show Category",
+#                   min = 1,
+#                   max = 20,
+#                   value = 8),
+#     ),
+#     
+#     
+#     # Show a plot of the generated distribution
+#     mainPanel(
+#       
+#       plotlyOutput("barPlot"),
+#       tabsetPanel(type = "tabs",
+#                   tabPanel("Table", tableOutput("table"))
+#       ),
+#     )
+#   )
+# ))
