@@ -13,8 +13,6 @@ library(MetamapsDB)
 library(RColorBrewer)
 library(AnnotationDbi)
 library(org.Hs.eg.db)
-library(org.Mm.eg.db) 
-
 library(viridis)
 
 library(pathview)
@@ -671,7 +669,7 @@ reorder_palette <- function(palette, showCategory){
   reordered <- reordered[!is.na(reordered)]
   return(reordered)
 }
-cnet_plotly <- function(enrichment_result, showCategory, selected_rows = c(), foldChange=NULL, is_kegg=FALSE, species="Human"){
+cnet_plotly <- function(enrichment_result, showCategory, selected_rows = c(), foldChange=NULL, is_kegg=FALSE){
   
   node_label_wrap_width <- 40
   gene_font_size <- 8
@@ -692,9 +690,6 @@ cnet_plotly <- function(enrichment_result, showCategory, selected_rows = c(), fo
   selected_edge_opacity <- 0.6
   not_selected_edge_opacity <- 0.1
   
-  species2orgdb <- c(org.Hs.eg.db, org.Mm.eg.db)
-  names(species2orgdb) <- c("Human", "Mouse")
-  OrgDb <- species2orgdb[[species]]
   
   # set actual_showCategory -----------------------------------------
   actual_showCategory <- update_n(enrichment_result, showCategory)
@@ -709,7 +704,7 @@ cnet_plotly <- function(enrichment_result, showCategory, selected_rows = c(), fo
   # set node label----------------------------------------
   node_names <- names(V(g))
   if (is_kegg){
-    node_gene_symbols <- mapIds(OrgDb, keys=node_names[(actual_showCategory+1):length(node_names)], column="SYMBOL", keytype="ENTREZID", multiVals="first")
+    node_gene_symbols <- mapIds(org.Hs.eg.db, keys=node_names[(actual_showCategory+1):length(node_names)], column="SYMBOL", keytype="ENTREZID", multiVals="first")
     V(g)$label <- str_wrap(c(node_names[1:actual_showCategory], node_gene_symbols), width = 40)
   }else{
     V(g)$label <- str_wrap(node_names, width = node_label_wrap_width)

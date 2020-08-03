@@ -30,14 +30,10 @@ ui <- dashboardPage(
                 ".csv")
             ),
             textInput(
-              "GeneID_column", "GeneID column name",
+              "GeneID_column", "Please enter GeneID column name",
               value = ""
-            ),
-            radioButtons(
-              "species", "Select species", 
-              choices = c("Human"="Human", "Mouse"="Mouse"), selected = "Human"
             )
-          ),# sidebarPanel
+          ),
           mainPanel(
             tabsetPanel(
               type = "tabs",
@@ -46,8 +42,8 @@ ui <- dashboardPage(
                 DT::dataTableOutput("table"))
             ),
           )
-        )# sidebarLayout
-      ),# tabItem
+        )
+      ),
       # KEGG Result Panel --------------------------------------------------
       tabItem(
         tabName = "KEGG",

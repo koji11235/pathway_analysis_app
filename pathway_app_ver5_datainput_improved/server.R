@@ -1,11 +1,4 @@
 shinyServer(function(input, output, session) {
-    
-
-    
-    species2OrgDB <- c(org.Hs.eg.db, org.Mm.eg.db)
-    names(species2OrgDB) <- c("Human", "Mouse")
-    
-    
 
     observeEvent(input$file, {
         input_data <- reactive(read_csv(input$file$datapath))
@@ -26,38 +19,10 @@ shinyServer(function(input, output, session) {
         }
         return (gene_IDs)
     })
-    
-    keggOrganism <- reactive({
-        # if (input$species == "Human"){
-        #     return("hsa")
-        # }else if(input$species == "Mouse"){
-        #     return("mmu")
-        # }
-        species2keggorganism <- c("hsa", "mmu")
-        names(species2keggorganism) <- c("Human", "Mouse")
-        #print(species2keggorganism)
-        #print(species2keggorganism[[input$species]])
-        return(species2keggorganism[[input$species]])
-    })
-    
-    reactome_species <- reactive({
-        species2reactome_species <- c("human", "mouse")
-        names(species2reactome_species) <- c("Human", "Mouse")
-        return(species2reactome_species[[input$species]])
-    })
-    
-    OrgDb <- reactive({
-        species2orgdb <- c(org.Hs.eg.db, org.Mm.eg.db)
-        names(species2orgdb) <- c("Human", "Mouse")
-        return(species2orgdb[[input$species]])
-    })
-    
-    
 
     # Plot KEGG results ------------------------------------------------------------------
     kegg_enrichment_result <- reactive({
-        
-        kegg_enrichment_result <- enrichKEGG(gene=gene_IDs(), pvalueCutoff=0.05, organism = keggOrganism())
+        kegg_enrichment_result <- enrichKEGG(gene=gene_IDs(), pvalueCutoff=0.05)
         return (kegg_enrichment_result)
     })
     
@@ -92,8 +57,7 @@ shinyServer(function(input, output, session) {
                                             showCategory = input$KEGG_cnetPlot_showCategory,
                                             selected_rows = input$kegg_table_rows_selected,
                                             foldChange = NULL, 
-                                            is_kegg = TRUE, 
-                                            species=input$species) 
+                                            is_kegg = TRUE) 
     })
     
     output$KeggImage <- renderImage({
@@ -145,7 +109,7 @@ shinyServer(function(input, output, session) {
     
     # Plot Reactome results ------------------------------------------------------------------
     reactome_enrichment_result <- reactive({
-        return (enrichPathway(gene=gene_IDs(), pvalueCutoff=0.05, readable = TRUE, organism = reactome_species()))
+        return (enrichPathway(gene=gene_IDs(), pvalueCutoff=0.05, readable = TRUE))
     })
     
     output$reactome_table <- DT::renderDataTable(
@@ -186,7 +150,7 @@ shinyServer(function(input, output, session) {
     # Plot GO_BP results ------------------------------------------------------------------
     GO_BP_enrichment_result <- reactive({
         return (enrichGO(gene=gene_IDs(), pvalueCutoff=0.05, readable = TRUE,
-                         OrgDb = OrgDb(), 
+                         OrgDb = org.Hs.eg.db, 
                          ont = "BP"))
     })
     
@@ -227,7 +191,7 @@ shinyServer(function(input, output, session) {
     # Plot GO_MF results ------------------------------------------------------------------
     GO_MF_enrichment_result <- reactive({
         return (enrichGO(gene=gene_IDs(), pvalueCutoff=0.05, readable = TRUE,
-                         OrgDb = OrgDb(), 
+                         OrgDb = org.Hs.eg.db, 
                          ont = "MF"))
     })
     
@@ -268,7 +232,7 @@ shinyServer(function(input, output, session) {
     # Plot GO_CC results ------------------------------------------------------------------
     GO_CC_enrichment_result <- reactive({
         return (enrichGO(gene=gene_IDs(), pvalueCutoff=0.05, readable = TRUE,
-                         OrgDb = OrgDb(), 
+                         OrgDb = org.Hs.eg.db, 
                          ont = "CC"))
     })
     
